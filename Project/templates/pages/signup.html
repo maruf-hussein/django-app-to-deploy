@@ -1,0 +1,18 @@
+{% extends 'components/layout.html' %}
+
+{% block title %}
+Signup
+{% endblock %}
+
+{% block content %}
+<div class="w-full flex items-center justify-center py-16">
+	<div class="sm:max-w-[24rem] w-full flex flex-col items-center justify-center gap-10">
+		<div class="w-fit flex items-center justify-center">
+			<h1 class="text-3xl font-medium">Signup</h1>
+		</div>
+		<div class="w-full flex items-center justify-center">
+			{% include 'components/form/form.html' %}
+		</div>
+	</div>
+</div>
+{% endblock %}

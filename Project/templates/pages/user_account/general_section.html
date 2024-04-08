@@ -1,0 +1,127 @@
+{% load static %}
+
+<section class="flex flex-col gap-6 dark:text-white">
+  <div class="flex items-center justify-start">
+    <h4 class="inline-block text-3xl font-semibold pl-4">General</h4>
+  </div>
+
+  <div class="w-full flex flex-col items-start justify-start gap-8">
+    <form method="post" action="{% url 'account_details_edit_page' %}" class="flex w-full flex-col rounded-lg dark:text-white border border-black/15 dark:border-white/15 max-sm:flex-col duration-300 overflow-hidden" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="hidden" name="formType" value="avatar" />
+      <div class="flex w-full items-start justify-between gap-12 p-8 bg-white dark:bg-neutral-900 max-sm:w-full max-sm:p-6">
+        <div class="w-full">
+          <h4 class="inline-block text-xl font-semibold leading-none mb-4">Avatar</h4>
+          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ducimus commodi recusandae, tempore velit perferendis.</p>
+        </div>
+        <div class="inline-block !size-24 flex-shrink-0">
+          {% comment %} <img class="size-full rounded-full border border-black/15" src="{{ request.user.image.url }}" alt="User Image" /> {% endcomment %}
+          <label class="cursor-pointer">
+            <img id="userAvatarPreview" class="size-full rounded-full border border-black/15" src="{{ request.user.image.url }}" alt="User avatar preview" />
+            <input type="file" name="avatar" id="userAvatarInput" class="hidden" onchange="onAvatarInputChange(event, '{{ request.user.image.url }}')" />
+          </label>
+        </div>
+      </div>
+      <div class="flex w-full items-center justify-between gap-y-4 py-4 px-8 text-sm bg-neutral-150 dark:bg-neutral-950 border-t border-black/15 dark:border-white/15 max-sm:w-full max-sm:p-6">
+        <span class="inline-block">Save the changes</span>
+        <button type="submit" id="buttonForUserAvatar" disabled class="rounded-md px-3 py-2.5 leading-none text-white dark:text-black dark:disabled:text-white bg-black disabled:bg-black/80 dark:bg-white dark:disabled:bg-neutral-900 disabled:cursor-not-allowed">Confirm</button>
+      </div>
+    </form>
+
+    {% comment %}--- Name ----{% endcomment %}
+    <form method="post" action="{% url 'account_details_edit_page' %}" class="flex w-full flex-col rounded-lg dark:text-white border border-black/15 dark:border-white/15 max-sm:flex-col duration-300 overflow-hidden">
+      {% csrf_token %}
+      <input type="hidden" name="formType" value="name" />
+      <div class="flex flex-col w-full items-start justify-between p-8 bg-white dark:bg-neutral-900 max-sm:w-full max-sm:p-6">
+        <div class="w-full mb-5">
+          <h4 class="inline-block text-xl font-semibold leading-none mb-4">Name</h4>
+          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ducimus commodi recusandae, tempore velit perferendis.</p>
+        </div>
+        <div class="w-full">
+          <input type="text" name="fullname" class="w-full rounded-md border p-2 outline-none bg-neutral-50 focus:border-black/50 dark:text-white dark:bg-neutral-950 dark:border-white/15" value="{{ request.user.fullname }}" oninput="onInputChange(event, 'buttonForName', '{{ request.user.fullname }}')" />
+        </div>
+      </div>
+
+      <div class="flex w-full items-center justify-between gap-y-4 py-4 px-8 text-sm bg-neutral-150 dark:bg-neutral-950 border-t border-black/15 dark:border-white/15 max-sm:w-full max-sm:p-6">
+        <span class="inline-block">Save the changes</span>
+        <button type="submit" id="buttonForName" disabled class="rounded-md px-3 py-2.5 leading-none text-white dark:text-black dark:disabled:text-white bg-black disabled:bg-black/80 dark:bg-white dark:disabled:bg-neutral-900 disabled:cursor-not-allowed">Confirm</button>
+      </div>
+    </form>
+
+    {% comment %}--- Email ----{% endcomment %}
+    <form method="post" action="{% url 'account_details_edit_page' %}" class="flex w-full flex-col rounded-lg dark:text-white border border-black/15 dark:border-white/15 max-sm:flex-col duration-300 overflow-hidden">
+      {% csrf_token %}
+      <input type="hidden" name="formType" value="email" />
+      <div class="flex flex-col w-full items-start justify-between p-8 bg-white dark:bg-neutral-900 max-sm:w-full max-sm:p-6">
+        <div class="w-full mb-5">
+          <h4 class="inline-block text-xl font-semibold leading-none mb-4">Email</h4>
+          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae vero fugit nulla rem accusantium numquam!</p>
+        </div>
+
+        <div class="w-full">
+          <input type="email" name="email" class="w-full rounded-md border p-2 outline-none bg-neutral-50 focus:border-black/50 dark:text-white dark:bg-neutral-950 dark:border-white/15" value="{{ request.user.email }}" oninput="onInputChange(event, 'buttonForEmail', '{{ request.user.email }}')" />
+        </div>
+      </div>
+      <div class="flex w-full items-center justify-between gap-y-4 py-4 px-8 text-sm bg-neutral-150 dark:bg-neutral-950 border-t border-black/15 dark:border-white/15 max-sm:w-full max-sm:p-6">
+        <span class="inline-block">Save the changes</span>
+        <button type="submit" id="buttonForEmail" disabled class="rounded-md px-3 py-2.5 leading-none text-white dark:text-black dark:disabled:text-white bg-black disabled:bg-black/80 dark:bg-white dark:disabled:bg-neutral-900 disabled:cursor-not-allowed">Confirm</button>
+      </div>
+    </form>
+
+    {% comment %}--- Password ----{% endcomment %}
+    <form method="post" action="{% url 'account_details_edit_page' %}" class="flex w-full flex-col rounded-lg dark:text-white border border-black/15 dark:border-white/15 max-sm:flex-col duration-300 overflow-hidden">
+      {% csrf_token %}
+      <input type="hidden" name="formType" value="password" />
+      <div class="flex flex-col w-full items-start justify-between p-8 bg-white dark:bg-neutral-900 max-sm:w-full max-sm:p-6">
+        <div class="w-full">
+          <h4 class="inline-block text-xl font-semibold leading-none mb-4">Password</h4>
+          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae vero fugit nulla rem accusantium numquam!</p>
+        </div>
+
+        {% comment %}--- Line ---{% endcomment %}
+        <div class="w-full inline-block my-5">
+          <div class="w-full h-[1px] bg-black/15 dark:bg-white/15"></div>
+        </div>
+
+        <div class="w-full">
+          <div class="w-full">
+            <h5 class="inline-block text-md font-semibold leading-none mb-8">Change Password</h5>
+          </div>
+
+          <div class="w-full flex flex-col gap-6">
+            <div class="flex flex-col items-start justify-start">
+              <label class="mb-1 text-sm">Old password</label>
+              <input type="password" name="oldPassword" placeholder="Enter password" class="w-full rounded-md border p-2 outline-none bg-neutral-50 focus:border-black/50 dark:text-white dark:bg-neutral-950 dark:border-white/15" oninput="onInputChange(event, 'buttonForOldPassword', '')" />
+            </div>
+
+            <div class="flex flex-col items-start justify-start">
+              <label class="mb-1 text-sm">New password</label>
+              <input type="password" name="newPassword" placeholder="Enter password" class="w-full rounded-md border p-2 outline-none bg-neutral-50 focus:border-black/50 dark:text-white dark:bg-neutral-950 dark:border-white/15" oninput="onInputChange(event, 'buttonForOldPassword', '')" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex w-full items-center justify-between gap-y-4 py-4 px-8 text-sm bg-neutral-150 dark:bg-neutral-950 border-t border-black/15 dark:border-white/15 max-sm:w-full max-sm:p-6">
+        <span class="inline-block">Save the changes</span>
+        <button type="submit" id="buttonForOldPassword" disabled class="rounded-md px-3 py-2.5 leading-none text-white dark:text-black dark:disabled:text-white bg-black disabled:bg-black/80 dark:bg-white dark:disabled:bg-neutral-900 disabled:cursor-not-allowed">Confirm</button>
+      </div>
+    </form>
+
+    {% comment %}--- ID ----{% endcomment %}
+    <div class="flex w-full flex-col rounded-lg dark:text-white border border-black/15 dark:border-white/15 max-sm:flex-col duration-300 overflow-hidden">
+      <div class="flex flex-col w-full items-start justify-between p-8 bg-white dark:bg-neutral-900 max-sm:w-full max-sm:p-6">
+        <div class="w-full mb-5">
+          <h4 class="inline-block text-xl font-semibold leading-none mb-4">Unique ID</h4>
+          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, eos!</p>
+        </div>
+        <div class="w-full">
+          <input disabled class="w-full rounded-md border p-2 outline-none bg-neutral-50 focus:border-black/50 dark:text-white dark:disabled:bg-neutral-950 dark:border-white/15" value="{{ request.user.uniqueId }}" />
+        </div>
+      </div>
+      <div class="flex w-full items-center justify-between gap-y-4 py-4 px-8 text-sm bg-neutral-150 dark:bg-neutral-950 border-t border-black/15 dark:border-white/15 max-sm:w-full max-sm:p-6">
+        <span class="inline-block">Copy ID</span>
+        <button class="rounded-md bg-black px-3 py-2.5 leading-none text-white dark:bg-white dark:disabled:bg-white/80 dark:text-black" onclick="copyToClipboard( event, '{{ request.user.uniqueId }}')">Copy</button>
+      </div>
+    </div>
+  </div>
+</section>

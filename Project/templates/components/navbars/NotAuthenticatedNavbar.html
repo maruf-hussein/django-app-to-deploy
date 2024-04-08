@@ -1,0 +1,27 @@
+<div class="flex items-center justify-center gap-6 max-lg:w-full max-lg:px-6 max-lg:flex-col-reverse max-lg:gap-4">
+  <div class="navigationsPart flex items-center justify-center max-lg:w-full ">
+    <nav class="flex items-center justify-center gap-6 max-lg:w-full max-lg:flex-col max-lg:items-start max-lg:gap-0">
+      <div class="hidden max-lg:flex h-[1px] w-full bg-black/15 dark:bg-white/15"></div>
+      <a href="{% url 'home_page' %}" class="text-sm font-medium dark:font-normal max-lg:w-full max-lg:py-3 hover:text-black dark:hover:text-white {% if active == 'home' %}text-black dark:text-white{% else %}text-gray-400 dark:text-white/50 {% endif %}">Home</a>
+      <div class="hidden max-lg:flex h-[1px] w-full bg-black/15 dark:bg-white/15"></div>
+      <a href="{% url 'services_page' %}" class="text-sm font-medium dark:font-normal max-lg:w-full max-lg:py-3 hover:text-black dark:hover:text-white {% if active == 'services' %}text-black dark:text-white{% else %}text-gray-400 dark:text-white/50 {% endif %}">Services</a>
+      <div class="hidden max-lg:flex h-[1px] w-full bg-black/15 dark:bg-white/15"></div>
+      <a href="{% url 'about_page' %}" class="text-sm font-medium dark:font-normal max-lg:w-full max-lg:py-3 hover:text-black dark:hover:text-white {% if active == 'about' %}text-black dark:text-white{% else %}text-gray-400 dark:text-white/50 {% endif %}">About</a>
+      <div class="hidden max-lg:flex h-[1px] w-full bg-black/15 dark:bg-white/15"></div>
+      <a href="{% url 'contact_page' %}" class="text-sm font-medium dark:font-normal max-lg:w-full max-lg:py-3 hover:text-black dark:hover:text-white {% if active == 'contact' %}text-black dark:text-white{% else %}text-gray-400 dark:text-white/50 {% endif %}">Contact</a>
+      <div class="hidden max-lg:flex h-[1px] w-full bg-black/15 dark:bg-white/15"></div>
+    </nav>
+  </div>
+  <div class="authPart flex items-center justify-center max-lg:w-full">
+    <div class="flex items-center justify-center gap-2 max-lg:w-full max-lg:flex-col max-lg:gap-4">
+      {% if request.path == "/signup/" %}
+        <a href="{% url 'login_page' %}" class="flex items-center justify-center text-sm font-medium leading-none py-2.5 max-lg:py-3 px-5 text-black dark:text-white bg-white hover:bg-neutral-200 dark:bg-black dark:hover:bg-neutral-900 border border-black/15 dark:border-white/10 max-lg:w-full rounded-lg max-lg:rounded-md">Login</a>
+      {% elif request.path == "/login/" %}
+        <a href="{% url 'signup_page' %}" class="flex items-center justify-center text-sm font-medium leading-none py-2.5 max-lg:py-3 px-5 text-black dark:text-white bg-white hover:bg-neutral-200 dark:bg-black dark:hover:bg-neutral-900 border border-black/15 dark:border-white/10 max-lg:w-full rounded-lg max-lg:rounded-md">Signup</a>
+      {% else %}
+        <a href="{% url 'login_page' %}" class="flex items-center justify-center text-sm font-medium leading-none py-2.5 max-lg:py-3 px-5 bg-white dark:bg-black dark:hover:bg-neutral-900 dark:text-white border border-black/15 dark:border-white/15 max-lg:w-full rounded-lg max-lg:rounded-md">Login</a>
+        <a href="{% url 'signup_page' %}" class="flex items-center justify-center text-sm font-medium leading-none py-2.5 max-lg:py-3 px-5 text-white bg-black dark:bg-white dark:hover:bg-neutral-200 dark:text-black border border-black dark:border-none max-lg:w-full rounded-lg max-lg:rounded-md">Signup</a>
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+{% load static %}
+
+<section class="w-full flex flex-col gap-6">
+  <div class="flex items-center justify-start">
+    <h4 class="inline-block text-3xl font-semibold text-red-500 dark:text-red-600 pl-4">Danger</h4>
+  </div>
+
+  <div class="w-full flex flex-col items-start justify-start gap-8">
+    <div class="w-full flex max-sm:flex-col flex-col dark:text-white border border-black/15 dark:border-white/15 rounded-lg  duration-300 overflow-hidden">
+      <div class="flex flex-col w-full items-start justify-between p-8 bg-white dark:bg-neutral-900 max-sm:w-full max-sm:p-6">
+        <div class="w-full mb-5">
+          <h4 class="inline-block text-xl font-semibold leading-none mb-2">Logout</h4>
+          <p class="text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit, in.</p>
+        </div>
+        <div class="w-full">
+          <input disabled class="w-full rounded-md border p-2 outline-none focus:border-black/50 dark:disabled:bg-zinc-950/90 dark:border-white/15" value="{{ request.user.uniqueId }}" />
+        </div>
+      </div>
+
+      <div class="flex w-full items-center justify-between gap-y-4 py-4 px-8 text-sm bg-neutral-150 dark:bg-neutral-950 border-t border-black/10 max-sm:w-full max-sm:p-6">
+        <span class="inline-block">Logout account</span>
+        <a href="{% url 'logout_page' %}" class="rounded-md bg-black px-3 py-2.5 leading-none text-white disabled:cursor-not-allowed disabled:bg-black/80 dark:bg-white dark:disabled:bg-white/80 dark:text-black">Logout</a>
+      </div>
+    </div>
+
+    <div class="flex w-full flex-col rounded-lg border border-red-400 dark:border-red-600 dark:text-white max-sm:flex-col duration-300 overflow-hidden">
+      <div class="flex flex-col w-full items-start justify-between p-8 bg-white dark:bg-neutral-900 max-sm:w-full max-sm:p-6">
+        <div class="w-full mb-5">
+          <h4 class="inline-block text-xl font-semibold leading-none mb-2 text-red-500 dark:text-red-600">Delete Account</h4>
+          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nihil esse! Alias eius corrupti ratione.</p>
+        </div>
+        <div class="w-full">
+          <input disabled class="w-full rounded-md border p-2 outline-none focus:border-black/50 dark:disabled:bg-zinc-950/90 dark:border-white/15" value="{{ request.user.uniqueId }}" />
+        </div>
+      </div>
+
+      <div class="flex w-full items-center justify-between gap-y-4 py-4 px-8 text-sm bg-red-200 dark:bg-red-900/50 border-t border-red-400 dark:border-red-600 max-sm:w-full max-sm:p-6">
+        <span class="inline-block">Delete this account</span>
+        <button onclick="openDeleteAccountModel()" class="px-3 py-2 text-white bg-red-500 dark:bg-red-600 rounded-md">Delete</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="deleteAccountModel" class="fixed inset-0 z-[999] flex items-center justify-center bg-neutral-150/80 dark:bg-black/80 backdrop-blur-sm duration-300 scale-95 opacity-0 pointer-events-none">
+  {% include 'components/models/deleteAccount.html' %}
+</div>

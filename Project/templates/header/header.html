@@ -1,0 +1,53 @@
+{% load static %}
+
+<header class="sticky top-0 z-50 flex items-center justify-center h-16 dark:text-white bg-neutral-150/80 dark:bg-neutral-950 border-b border-black/15 dark:border-white/15 backdrop-blur-sm duration-300">
+  <div class="{% if not user.is_authenticated %}max-w-7xl w-full{% endif %} w-full flex items-center justify-between px-6 ">
+    <div class="flex items-center justify-center overflow-hidden {% if not user.is_authenticated %}w-full justify-between{% endif %}">
+      <div class="flex items-center justify-center">
+        <a class="logoPart flex items-center justify-center gap-2"
+          href="{% if request.user.is_authenticated %} {% url 'dashboard_overview_page' %} {% else %} {% url 'home_page' %} {% endif %}">
+          <span class="size-7 pointer-events-auto opacity-95 dark:opacity-100 bg-contain bg-logo-light dark:bg-logo-dark"></span>
+          {% if not request.user.is_authenticated %}
+            <span class="font-medium text-black/95 dark:text-white/95 text-3xl leading-none pointer-events-auto">webwarp</span>
+          {% endif %}
+        </a>
+      </div>
+
+      <div id="navigationMenu" class="max-lg:fixed max-lg:z-[1000] max-lg:h-screen max-lg:w-full max-lg:top-16 max-lg:inset-0 max-lg:flex max-lg:flex-col max-lg:items-center max-lg:justify-start max-lg:bg-white max-lg:dark:bg-black max-lg:py-6 lg:flex max-lg:opacity-0 max-lg:-translate-y-[0.125rem] max-lg:pointer-events-none origin-top duration-150">
+        {% if not user.is_authenticated %}
+          {% include 'components/navbars/NotAuthenticatedNavbar.html' %}
+        {% elif request.user.is_authenticated and not request.path == '/account/' %}
+          {% include 'components/navbars/AuthenticatedNavbar.html' %}
+        {% elif request.path == '/account/' %}
+          {% include 'components/navbars/GoBackHome.html' %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center flex-shrink-0 select-none">
+      <div id="navigationMenuButton" class="hidden size-6 {% if not request.user.is_authenticated %}!size-8{% endif %} p-1 max-lg:flex items-center justify-center bg-white dark:bg-black border border-black/15 dark:border-white/15 rounded-full cursor-pointer duration-300 overflow-hidden" onclick="toggleNavigationMenu(event)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-3 mt-[2px] pointer-events-none">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+        </svg>
+      </div>
+
+      {% if request.user.is_authenticated %}
+        <div class="lg:hidden flex items-center justify-center mx-4">
+          <span class="leading-none inline-block h-5 w-[1px] rotate-[calc(45deg_/_2)] rounded-full bg-gray-300"></span>
+        </div>
+      {% endif %}
+
+      {% if request.user.is_authenticated %}
+        <div class="authPart relative flex items-center justify-center">
+          <div class="flex items-center justify-center overflow-hidden" onclick="toggleUserInfoPopup()">
+            <img id="userInfoPopupButtonInHeader" class="size-8 rounded-full cursor-pointer" src="{{request.user.image.url}}" alt="User Img" />
+          </div>
+          
+          <div id="userInfoPopupDivInHeader" class="absolute top-[2.5rem] right-0 lg:-right-2 z-[100] opacity-0 scale-95 pointer-events-none">
+            {% include 'components/userInfoPopup.html' %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="!scroll-pt-24">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Learn the basics of website deployment through practical examples. This site explains the deployment process step-by-step and demonstrates how to get a simple website live on the internet through common hosting providers and platforms like GitHub Pages" />
+    <link rel="icon" href="{% static 'images/logo_light.png' %}" type="image/x-icon" />
+    {% include 'head/css_and_js.html' %}
+    <title>
+      webwarp .{% block title %}
+
+      {% endblock %}
+    </title>
+  </head>
+  <body class="relative dark:text-white bg-neutral-150 dark:bg-black min-h-[calc(100dvh_+_64px)] duration-300">
+    {% comment %}--- Messages ---{% endcomment %}
+    {% if messages %}
+      {% include 'components/messages.html' %}
+    {% endif %}
+
+    {% comment %}--- Header ---{% endcomment %}
+    {% include 'header/header.html' %}
+
+    {% comment %}--- Main ---{% endcomment %}
+    <main class="min-h-[calc(100dvh_-_4rem)] px-4">
+      {% block content %}
+
+      {% endblock %}
+    </main>
+
+    {% comment %}--- Footer ---{% endcomment %}
+    {% include 'footer/footer.html' %}
+  </body>
+</html>

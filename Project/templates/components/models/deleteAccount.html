@@ -1,0 +1,30 @@
+{% comment %}--- make a popup to delete account confirmation ---{% endcomment %}
+<div class="absolute inset-0 flex items-center justify-center dark:text-white px-4">
+  <button onclick="closeDeleteAccountModel()" class="absolute top-4 right-4 size-14 flex items-center justify-center p-4 text-black dark:text-white bg-transparent hover:bg-white/50 dark:hover:bg-white/5 rounded-full duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-full pointer-events-none">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <div class="flex items-center justify-center border border-black/15 dark:border-white/15 rounded-lg overflow-hidden">
+    <div class="max-w-xl flex flex-col items-center justify-center">
+      <div class="w-full bg-white dark:bg-neutral-900 p-6">
+        <div>
+          <h1 class="text-xl font-bold mb-2.5 text-red-500 dark:text-red-600">Are you sure you want to delete your account?</h1>
+        </div>
+        <div class="text-sm text-gray-400">
+          <p class="">Permanently remove User Personal Account and all of its contents from Our platform. This action is not reversible, so please continue with caution.</p>
+        </div>
+      </div>
+      <div class="w-full flex items-center justify-between py-4 px-6 text-sm bg-neutral-150 dark:bg-neutral-950 border-t border-black/15 dark:border-white/15">
+        <div class="w-full hidden sm:flex items-center justify-start">
+          <p class="text-sm">Confirm to delete</p>
+        </div>
+        <div class="w-full flex flex-row items-center justify-end max-sm:justify-between gap-2">
+          <button onclick="closeDeleteAccountModel()" class="max-sm:w-3/5 text-sm text-black/80 bg-white px-6 py-2 rounded-md">Cancel</button>
+          <a href="{% url 'delete_account_page' request.user.uniqueId %}" class="max-sm:w-2/5 text-sm text-center text-white/80  bg-red-500 dark:bg-red-600 px-6 py-2 rounded-md">Confirm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

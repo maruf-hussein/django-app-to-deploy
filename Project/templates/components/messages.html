@@ -1,0 +1,25 @@
+
+{% comment %} <ul class="messages fixed right-4 bottom-[calc(64px_+_1rem)]"> {% endcomment %}
+<ul class="messages fixed z-[99] right-4 bottom-4 max-w-96 w-full max-sm:!pl-4 flex flex-col gap-2">
+  {% for message in messages %}
+    <li id="{{ message.extra_tags }}" class="max-w-96 w-full min-h-24 max-sm:!ml-2 h-full flex items-start justify-between p-4 rounded-lg border duration-150
+    {% if message.level == 20 %}
+      dark:text-white bg-cyan-100 dark:!bg-cyan-600 border-cyan-300 dark:!border-none
+    {% elif message.level == 25 %}
+      dark:text-white bg-green-100 dark:!bg-green-600 border-green-300 dark:!border-none
+    {% elif message.level == 30 %}
+      dark:text-white bg-yellow-100 dark:!bg-yellow-600 border-yellow-300 dark:!border-none
+    {% elif message.level == 40 %}
+      dark:text-white bg-red-100 dark:!bg-red-600 border-red-300 dark:!border-none
+    {% endif %}">
+
+    <span class="w-full pr-2">{{ message }}</span>
+
+    <button class="size-6 backdrop-blur-sm translate-x-1.5 -translate-y-[0.5] text-black/80 dark:text-white bg-transparent hover:bg-white/80 dark:hover:bg-white/20 rounded-full" onclick="closeMessage({{ message.extra_tags }})">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x size-full pointer-events-none" viewBox="0 0 16 16">
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+      </svg>
+    </button>
+    </li>
+  {% endfor %}
+</ul>

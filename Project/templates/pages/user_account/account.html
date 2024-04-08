@@ -1,0 +1,27 @@
+{% extends 'components/layout.html' %}
+
+{% block title %}
+  Account
+{% endblock %}
+
+{% block content %}
+  <div class="w-full flex items-center justify-center">
+    <div class="max-w-7xl m-auto w-full min-h-[calc(100dvh_-_5rem)] flex flex-row justify-center gap-8">
+      <div class="w-1/4 hidden relative bg-red-00 lg:flex items-start justify-center">
+        {% include 'components/sidebar.html' %}
+      </div>
+      <div class="hidden lg:inline-block border-r border-dashed border-black/15 dark:border-white/15"></div>
+      {% comment %} {% endcomment %}
+      <div class="lg:w-3/4 flex items-start justify-center">
+        <div class="w-full flex flex-col items-start justify-center gap-12 py-8">
+          <div id="general" class="w-full flex items-center justify-center rounded-l border- border-dashed border-black/15">
+            {% include 'pages/user_account/general_section.html' %}
+          </div>
+          <div id="danger" class="w-full flex items-center justify-center rounded-l border- border-dashed border-black/15">
+            {% include 'pages/user_account/danger_section.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

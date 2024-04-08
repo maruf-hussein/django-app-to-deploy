@@ -1,0 +1,15 @@
+{% extends 'components/layout.html' %}
+
+{% block title %}
+  Dashboard
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-[calc(100dvh_-_4rem)] h-full flex items-start justify-center pt-16">
+    <div class="flex items-start justify-center">
+      {% block dashboardContent %}
+
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}

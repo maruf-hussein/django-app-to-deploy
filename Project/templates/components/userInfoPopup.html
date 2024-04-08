@@ -1,0 +1,129 @@
+<div class="flex items-center justify-center bg-white dark:bg-neutral-950 border border-black/15 dark:border-white/15 rounded-xl duration-300">
+  <div class="max-w-64 min-w-64 w-full flex items-start justify-start py-4 overflow-x-hidden">
+    <div class="w-full flex flex-col items-center justify-between text-sm">
+      {% comment %}--- User Data ---{% endcomment %}
+      <div class="w-full flex flex-col items-start justify-center px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white"> 
+        <div class= dark:hover:bg-neutral-900"userName w-full flex items-center justify-center">
+          <span class="w-full text-[16px] font-semibold text-black/90 dark:text-white/90 overflow-hidden text-ellipsis !cursor-default">{{ request.user.fullname }}</span>
+        </div>
+        <div class="userName w-full flex items-center justify-center">
+          <span class="w-full text-sm dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white overflow-hidden text-ellipsis  dark:hover:bg-neutral-900!cursor-default">{{ request.user.email }}</span>
+        </div>
+      </div>
+
+      {% comment %}--- Line ---{% endcomment %}
+      <div class="w-full inline-block my-2">
+        <div class="w-full h-[1px] bg-black/15 dark:bg-white/15"></div>
+      </div>
+
+      {% comment %}--- Options ---{% endcomment %}
+      <div class="w-full flex flex-col items-center justify-center">
+        {% if not request.path == '/account/' %}
+          <a href="{% url 'account_page' %}" class="w-full flex items-center justify-between px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black cursor-pointer">
+            <div class="userName flex items-center justify-center">
+              <span class="overflow-x-hidden text-ellipsis">Account Settings</span>
+            </div>
+            <div class="userSettings size-5 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="size-full pointer-events-none">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+            </div>
+          </a>
+        {% else %}
+          <a href="{% url 'dashboard_overview_page' %}" class="w-full flex items-center justify-between px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black cursor-pointer">
+            <div class="userName flex items-center justify-center">
+              <span class="overflow-x-hidden text-ellipsis">Dashboard</span>
+            </div>
+            <div class="userSettings size-5 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window-sidebar pointer-events-none" viewBox="0 0 16 16">
+                <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z" />
+              </svg>
+            </div>
+          </a>
+        {% endif %}
+
+        <a href="{% url 'account_page' %}" class="w-full flex items-center justify-between px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black cursor-pointer">
+          <div class="userName flex items-center justify-center">
+            <span class="overflow-x-hidden text-ellipsis">Create Team</span>
+          </div>
+          <div class="userSettings size-5 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      {% comment %}--- Line ---{% endcomment %}
+      <div class="w-full inline-block my-2 px-4">
+        <div class="w-full h-[1px] bg-black/15 dark:bg-white/15"></div>
+      </div>
+
+      {% comment %}--- Options ---{% endcomment %}
+      <div class="w-full flex flex-col items-center justify-center">
+        <a href="{% url 'dashboard_overview_page' %}" target="_blank" class="w-full flex items-center justify-between px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black cursor-pointer">
+          <div class="userName flex items-center justify-center">
+            <span class="overflow-x-hidden text-ellipsis">Docs</span>
+          </div>
+          <div class="userSettings size-5 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-[1.1rem] pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+        </a>
+
+        <a href="{% url 'dashboard_overview_page' %}" target="_blank" class="w-full flex items-center justify-between px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black cursor-pointer">
+          <div class="userName flex items-center justify-center">
+            <span class="overflow-x-hidden text-ellipsis">Help</span>
+          </div>
+          <div class="userSettings size-5 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+              <path stroke="currentColor" stroke-width="0" d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0" />
+            </svg>
+          </div>
+        </a>
+
+        <a href="{% url 'dashboard_overview_page' %}" target="_blank" class="w-full flex items-center justify-between px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black cursor-pointer">
+          <div class="userName flex items-center justify-center">
+            <span class="overflow-x-hidden text-ellipsis">Feedback</span>
+          </div>
+          <div class="userSettings size-5 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-full pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      {% comment %}--- Line ---{% endcomment %}
+      <div class="w-full inline-block my-2 px-4">
+        <div class="w-full h-[1px] bg-black/15 dark:bg-white/15"></div>
+      </div>
+
+      {% comment %}--- Theme ---{% endcomment %}
+      <div class="w-full flex flex-col items-center justify-center">
+        <div class="w-full flex items-center justify-between px-4 py-2 dark:font-light text-gray-400 dark:text-white/50 dark:hover:text-white hover:bg-neutral-150 dark:hover:bg-neutral-900 hover:text-black cursor-pointer" onclick="toggleTheme()">
+          <div class="userName flex items-center justify-center">
+            <span class="overflow-x-hidden text-ellipsis">Theme</span>
+          </div>
+          <div class="userSettings flex items-center justify-center">
+            <div id="themeIconDiv" class="size-5 flex items-center justify-center"></div>
+          </div>
+        </div>
+      </div>
+
+      {% comment %}--- Line ---{% endcomment %}
+      <div class="w-full inline-block my-2">
+        <div class="w-full h-[1px] bg-black/15 dark:bg-white/15"></div>
+      </div>
+
+      <div class="w-full flex items-center justify-center px-4 pt-2">
+        <div class="w-full flex items-center justify-center">
+          <a class="w-full duration-300 dark:font-medium text-white dark:text-black bg-black dark:bg-white dark:hover:bg-neutral-200 rounded-lg py-2 text-center" href="{% url 'logout_page' %}">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

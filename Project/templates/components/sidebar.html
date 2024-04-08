@@ -1,0 +1,21 @@
+{% load App_filters %}
+
+<div class="Sidebar sticky top-[calc(0px_+_6rem)] w-full flex items-start justify-center">
+  <div class="w-full flex flex-col items-start justify-center dark:text-white rounded-lg overflow-hidden">
+    <div class="w-full border-b border-dashed border-black/15 dark:border-white/15">
+      <p class="py-3 pt-0 px-4 font-medium">Jump into sections</p>
+    </div>
+
+    <div class="w-full flex flex-col items-start justify-center gap-1 pt-2">
+      {% for id in sectionIds %}
+        <a href="#{{ id }}" class="w-full inline-block py-2 px-4 overflow-hidden text-ellipsis text-sm text-gray-400 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-neutral-900 rounded-md">
+          {% if '-' in id %}
+            {{ id|replace:'-: '|capfirst }}
+          {% else %}
+            {{ id|capfirst }}
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

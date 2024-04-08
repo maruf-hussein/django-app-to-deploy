@@ -1,0 +1,64 @@
+<form action="" method="post" class="w-full mt-auto">
+  {% csrf_token %}
+
+  <div class="w-full flex flex-col items-center justify-center gap-6">
+    {% if navigateTo == 'login' %}
+      <div class="w-full flex flex-col items-center justify-center">
+        <div class="w-full flex items-center justify-start dark:text-white mb-1">
+          <label for="name">Name</label>
+        </div>
+        <div class="w-full flex items-center justify-center">
+          <input class="w-full leading-none p-2 outline-none dark:text-white bg-white dark:bg-neutral-900 border border-black/15 dark:border-white/15 focus:border-black/50 dark:focus:border-white/50 rounded-lg" type="text" id="fullname" name="fullname" placeholder="Enter your name" />
+        </div>
+      </div>
+    {% endif %}
+    {% comment %}--- Email ---{% endcomment %}
+    <div class="w-full flex flex-col items-center justify-center">
+      <div class="w-full flex items-center justify-start dark:text-white mb-1">
+        <label for="email">Email</label>
+      </div>
+      <div class="w-full flex items-center justify-center">
+        <input class="w-full leading-none p-2 outline-none dark:text-white bg-white dark:bg-neutral-900 border border-black/15 dark:border-white/15 focus:border-black/50 dark:focus:border-white/50 rounded-lg" type="email" id="email" name="email" placeholder="Enter your email" />
+      </div>
+    </div>
+
+    {% comment %}--- Password ---{% endcomment %}
+    <div class="w-full flex flex-col items-center justify-center">
+      <div class="w-full flex items-center justify-start dark:text-white mb-1">
+        <label for="password">Password</label>
+      </div>
+      <div class="w-full flex items-center justify-center">
+        <input class="w-full leading-none p-2 outline-none dark:text-white bg-white dark:bg-neutral-900 border border-black/15 dark:border-white/15 focus:border-black/50 dark:focus:border-white/50 rounded-lg" type="password" id="password" name="password" placeholder="Enter your password" />
+      </div>
+    </div>
+
+    {% comment %}--- Buttons ---{% endcomment %}
+    <div class="w-full flex items-center justify-between gap-2 mt-2">
+      <div class="w-2/5 flex items-center justify-center">
+        <input type="reset" value="Cancel" class="w-full leading-none py-2.5 bg-white hover:bg-neutral-150 dark:bg-black dark:hover:bg-neutral-900 dark:text-white border border-black/15 dark:border-white/15 bg rounded-lg cursor-pointer" />
+      </div>
+      <div class="w-3/5 flex items-center justify-center">
+        <input type="submit" value="Submit" class="w-full leading-none py-2.5 bg-black dark:bg-white hover:bg-black/80 dark:hover:bg-neutral-200 text-white dark:text-black border border-black/15 dark:border-none rounded-lg cursor-pointer" />
+      </div>
+    </div>
+
+    {% comment %}--- have or haven't account ---{% endcomment %}
+    <div class="w-full flex items-center justify-center">
+      <div class="w-full flex items-center justify-center !text-sm dark:text-white">
+        {% if navigateTo %}
+          {% if navigateTo == 'login' %}
+            <div>
+              <span>Already have an account</span>
+              <a class="text-indigo-800 dark:text-indigo-500 underline" href="{% url 'login_page' %}">Login</a>
+            </div>
+          {% elif navigateTo == 'signup' %}
+            <div>
+              <span>Don't have an account</span>
+              <a class="text-indigo-800 dark:text-indigo-500 underline" href="{% url 'signup_page' %}">Signup</a>
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</form>

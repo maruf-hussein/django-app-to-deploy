@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* create a custom scrollbar */
+::-webkit-scrollbar {
+    width: 1.2vh;
+    background-color: #f1f5f9;
+}
+::-webkit-scrollbar-track {
+    /* background-color: transparent; */
+    background-color: #e5e8ec;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #c5c5c5;
+    border: 0.3vh solid #e5e8ec;
+    border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #979797;
+    cursor: pointer;
+}
+
+/* css_for_popup */
+.popup_active{
+    display: block !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    pointer-events: auto !important;
+    transition-duration: 0.15s !important;
+}
